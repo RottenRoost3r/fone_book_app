@@ -1,7 +1,8 @@
 require 'sinatra'
 require 'mysql2'
-
+require 'sanitize'
 require_relative 'local_ENV.rb'
+require_relative 'db_funk.rb'
 enable :sessions
 
 load 'local_ENV.rb' if File.exist?('local_ENV.rb')
@@ -14,16 +15,24 @@ end
 post '/login' do
 username = params[:username]
 password = params[:password]
+username = client.escape(username)
+password = client.escape(password)
+
 chk_arr = []
-x = client.query("SELECT `id` FROM `users_table` WHERE username = '#{username}' AND password = '#{password}'")
+
+x = client.query("SELECT `id` FROM `users_table` WHERE username = AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))) AND password = AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512)))")
 x.each do |c|
   chk_arr << c['id']
-end  
+end
+
 unless chk_arr.length > 0
   redirect '/'
 end
+
 session[:user_id] = chk_arr.join('')
+client.close
 redirect '/contacts'
+
 end
 
 get '/signup' do
@@ -31,16 +40,64 @@ get '/signup' do
 end
 
 post '/signup' do
+  client
 username = params[:username]
 password = params[:password]
+username = client.escape(username)
+password = client.escape(password)
 
-client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), '#{username}', '#{password}')")
+client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))), AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
+client.close
 redirect '/'
 end
 
 get '/contacts' do
-erb :contacts
+  contacts = []
+client = Mysql2::Client.new(:host => ENV['endpoint'], :username => ENV['username'], :password => ENV['password'], :port => ENV['port'], :database => ENV['database'], :socket =>'/tmp/mysql.sock')
+  n = client.query("SELECT * FROM `contacts_table` WHERE owner = '#{session[:user_id]}'")
+  n.each do |y|
+    arr = []
+    arr << Sanitize.clean(y['firstname'])
+    arr << Sanitize.clean(y['lastname'])
+    arr << Sanitize.clean(y['street'])
+    arr << Sanitize.clean(y['city'])
+    arr << Sanitize.clean(y['state'])
+    arr << Sanitize.clean(y['zip'])
+    arr << Sanitize.clean(y['phonenumber'])
+    contacts << arr
+  end
+  p contacts
+erb :contacts, locals:{contacts: contacts || []}
 end
 
 post '/contacts' do
+client
+client.close
+end
+
+get '/create_contact' do
+  erb :create_contact
+end
+
+post '/create_contact' do
+  client
+  First_Name = params[:firstname]
+  First_Name = client.escape(First_Name)
+  Last_Name = params[:lastname]
+  Last_Name = client.escape(Last_Name)
+  Street_Address = params[:street]
+  Street_Address = client.escape(Street_Address)
+  City = params[:city]
+  City = client.escape(City)
+  State = params[:state]
+  State = client.escape(State)
+  Phone_Number = params[:phonenumber]
+  Phone_Number = client.escape(Phone_Number)
+  Zip = params[:zip]
+  Zip = client.escape(Zip)
+  id = session[:user_id]
+  id = client.escape(id)
+  client.query("INSERT INTO `contacts_table`(firstname, lastname, street, city, state, zip, phonenumber, owner) VALUES('#{First_Name}', '#{Last_Name}', '#{Street_Address}', '#{City}', '#{State}', '#{Zip}', '#{Phone_Number}', '#{id}')")
+  client.close
+  redirect '/contacts'
 end

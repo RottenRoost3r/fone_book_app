@@ -1,5 +1,9 @@
 <body>
+
+<a href='/create_contact'><button>Create a new contact</button></a>
+
 <form method="post" action="/contacts">
+    <table style="width:100%">
     <tr>
         <th>FIRST NAME</th>
         <th>LAST NAME</th>
@@ -9,9 +13,14 @@
         <th>ZIP</th>
         <th>PHONE NUMBER</th>
     </tr>    
-
-    
-
-    
+    <%contacts.each do |v|%>
+        <tr>
+        <%v.each do |info|%>
+            <td><%=info%></td>
+        <%end%>
+        </tr>
+    <%end%>
+    </table>
+    <%p contacts%>
 </form>
 </body>
