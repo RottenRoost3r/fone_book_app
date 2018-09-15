@@ -30,7 +30,7 @@ unless chk_arr.length > 0
 end
 
 session[:user_id] = chk_arr.join('')
-client.close
+
 redirect '/contacts'
 
 end
@@ -40,20 +40,19 @@ get '/signup' do
 end
 
 post '/signup' do
-  client
+  
 username = params[:username]
 password = params[:password]
 username = client.escape(username)
 password = client.escape(password)
 
 client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))), AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
-client.close
+
 redirect '/'
 end
 
 get '/contacts' do
   contacts = []
-client = Mysql2::Client.new(:host => ENV['endpoint'], :username => ENV['username'], :password => ENV['password'], :port => ENV['port'], :database => ENV['database'], :socket =>'/tmp/mysql.sock')
   n = client.query("SELECT * FROM `contacts_table` WHERE owner = '#{session[:user_id]}'")
   n.each do |y|
     arr = []
@@ -71,8 +70,7 @@ erb :contacts, locals:{contacts: contacts || []}
 end
 
 post '/contacts' do
-client
-client.close
+
 end
 
 get '/create_contact' do
@@ -80,7 +78,7 @@ get '/create_contact' do
 end
 
 post '/create_contact' do
-  client
+
   First_Name = params[:firstname]
   First_Name = client.escape(First_Name)
   Last_Name = params[:lastname]
@@ -98,6 +96,6 @@ post '/create_contact' do
   id = session[:user_id]
   id = client.escape(id)
   client.query("INSERT INTO `contacts_table`(firstname, lastname, street, city, state, zip, phonenumber, owner) VALUES('#{First_Name}', '#{Last_Name}', '#{Street_Address}', '#{City}', '#{State}', '#{Zip}', '#{Phone_Number}', '#{id}')")
-  client.close
+ 
   redirect '/contacts'
 end

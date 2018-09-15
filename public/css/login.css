@@ -1,0 +1,30 @@
+
+body{
+    background-color: goldenrod;
+}
+
+h1{
+    color: midnightblue;
+    text-align: center;
+}
+
+form{
+    text-align: center;
+    width: 22%;
+    height: 49%;
+    margin-left: 39vw;
+}
+
+input{
+    height: 100px;
+    width: 265px;
+    border-style: outset;
+    background-color: black;
+    color: orangered;
+    font-family: fantasy;
+    font-size: 29;
+}
+
+
+
+  

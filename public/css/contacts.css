@@ -1,0 +1,37 @@
+
+tr{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+
+body{
+    background-color: goldenrod;
+}
+
+h1{
+    color: midnightblue;
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
+
+button{
+    height: 40px;
+    width: 291px;
+    border-style: outset;
+    background-color: black;
+    color: orangered;
+    font-family: fantasy;
+    font-size: 29;
+    margin-left: 39vw;
+}
+
+
+

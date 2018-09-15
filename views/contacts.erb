@@ -1,18 +1,25 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/css/contacts.css">
+<h1>CONTACTS</h1>
+</head>
+
 <body>
 
 <a href='/create_contact'><button>Create a new contact</button></a>
 
 <form method="post" action="/contacts">
     <table style="width:100%">
+    <div class="table">
     <tr>
         <th>FIRST NAME</th>
         <th>LAST NAME</th>
-        <th>STREET</th>
+        <th>STREET</th><hr>
         <th>CITY</th>
         <th>STATE</th>
         <th>ZIP</th>
         <th>PHONE NUMBER</th>
-    </tr>    
+    </tr>
+    </div>
     <%contacts.each do |v|%>
         <tr>
         <%v.each do |info|%>
