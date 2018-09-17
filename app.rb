@@ -9,6 +9,8 @@ load 'local_ENV.rb' if File.exist?('local_ENV.rb')
 client = Mysql2::Client.new(:host => ENV['endpoint'], :username => ENV['username'], :password => ENV['password'], :port => ENV['port'], :database => ENV['database'], :socket =>'/tmp/mysql.sock')
 
 get '/' do
+  error = session[:error] || ""
+  
   erb :login
 end
 
@@ -46,7 +48,8 @@ password = params[:password]
 username = client.escape(username)
 password = client.escape(password)
 
-client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))), AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
+ client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))), AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
+
 
 redirect '/'
 end

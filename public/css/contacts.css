@@ -33,5 +33,15 @@ button{
     margin-left: 39vw;
 }
 
+td, th {
+    border: 1px solid green;
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: green;
+}
 
 
