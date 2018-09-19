@@ -18,8 +18,13 @@ function searchfunk() {
 
 function deleteRows(){
 
-	isTable = document.getElementById('users_table');
+	isTable = document.getElementById('contacts_table');
 	nBoxes = document.getElementsByName('delbox');
-	for (i=nBoxes.length-1; i>=0; i--)
-		{if (nBoxes[i].checked == true){isTable.deleteRow(i+1)}}
+	for (i=nBoxes.length-1; i>=0; i--);
+		{if (nBoxes[i].checked == true){isTable.deleteRow(i+1);}}
 }	
+
+function delbutton(){
+  var chkboxes = document.getElementById(delbox);
+
+}

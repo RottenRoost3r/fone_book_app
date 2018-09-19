@@ -64,8 +64,10 @@ end
 get '/contacts' do
   contacts = []
   n = client.query("SELECT * FROM `contacts_table` WHERE owner = '#{session[:user_id]}'")
+  other_arr = []
   n.each do |y|
     arr = []
+    other_arr<< Sanitize.clean(y['id'])
     arr << Sanitize.clean(y['firstname'])
     arr << Sanitize.clean(y['lastname'])
     arr << Sanitize.clean(y['street'])
@@ -76,7 +78,7 @@ get '/contacts' do
     contacts << arr
   end
   p contacts
-erb :contacts, locals:{contacts: contacts || []}
+erb :contacts, locals:{contacts: contacts || [], other_arr: other_arr || []}
 end
 
 post '/contacts' do
@@ -108,4 +110,13 @@ post '/create_contact' do
   client.query("INSERT INTO `contacts_table`(firstname, lastname, street, city, state, zip, phonenumber, owner) VALUES('#{First_Name}', '#{Last_Name}', '#{Street_Address}', '#{City}', '#{State}', '#{Zip}', '#{Phone_Number}', '#{id}')")
  
   redirect '/contacts'
+end
+
+post '/delete' do
+  other_arr = params[:other_arr] || []
+  temp_arr = params[:killbutton] || []
+  temp_arr.each_with_index do |v,i|
+    client.query("DELETE FROM `contacts_table` WHERE `id` = '#{other_arr[i]}' AND `owner` = '#{session[:user_id]}'")
+  end
+  redirect'/contacts'
 end
