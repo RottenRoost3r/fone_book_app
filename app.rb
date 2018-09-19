@@ -22,7 +22,7 @@ password = client.escape(password)
 
 chk_arr = []
 
-x = client.query("SELECT `id` FROM `users_table` WHERE username = AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))) AND password = AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512)))")
+x = client.query("SELECT `id` FROM `users_table` WHERE username = '#{username}' AND password = AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512)))")
 x.each do |c|
   chk_arr << c['id']
 end
@@ -48,8 +48,15 @@ password = params[:password]
 username = client.escape(username)
 password = client.escape(password)
 
- client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), AES_ENCRYPT('#{username}', UNHEX(SHA2('#{ENV['salt']}',512))), AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
 
+m = client.query("SELECT `username` FROM users_table")
+m.each do |v|
+  if v.has_value?(username)
+    redirect '/signup'
+  end
+end
+
+client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), '#{username}', AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
 
 redirect '/'
 end
