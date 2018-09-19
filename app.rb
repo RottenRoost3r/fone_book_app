@@ -67,7 +67,7 @@ get '/contacts' do
   other_arr = []
   n.each do |y|
     arr = []
-    other_arr<< Sanitize.clean(y['id'])
+    other_arr << Sanitize.clean(y['id'])
     arr << Sanitize.clean(y['firstname'])
     arr << Sanitize.clean(y['lastname'])
     arr << Sanitize.clean(y['street'])
@@ -116,7 +116,8 @@ post '/delete' do
   other_arr = params[:other_arr] || []
   temp_arr = params[:killbutton] || []
   temp_arr.each_with_index do |v,i|
-    client.query("DELETE FROM `contacts_table` WHERE `id` = '#{other_arr[i]}' AND `owner` = '#{session[:user_id]}'")
+    killthis = v-1
+    client.query("DELETE FROM `contacts_table` WHERE `id`='#{other_arr[killthis].to_i}' ")
   end
   redirect'/contacts'
 end

@@ -26,7 +26,7 @@
     </div>
     <%contacts.each_with_index do |v, i|%>
         <tr>
-        <input type="hidden" name="other_array" id="other_array" value="<%=other_arr[i]%>">
+        <input type="hidden" name="other_arr[]" id="other_arr" value="<%=other_arr[i]%>">
         <%v.each do |info|%>
             <td><%=info%></td>
         <%end%>
