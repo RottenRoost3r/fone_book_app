@@ -13,6 +13,7 @@
     <table style="width:100%" id="table">
     <div class="table">
     <tr>
+        <th>DELETE?</th>
         <th>FIRST NAME</th>
         <th>LAST NAME</th>
         <th>STREET</th>
@@ -24,10 +25,12 @@
     </div>
     <%contacts.each do |v|%>
         <tr>
+        <td><input type="checkbox" id="delbox" name="delete_contact" onclick="deleteRows();"></td>
         <%v.each do |info|%>
             <td><%=info%></td>
         <%end%>
         </tr>
+         
     <%end%>
     </table>
 </form>
