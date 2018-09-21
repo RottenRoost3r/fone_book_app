@@ -24,3 +24,12 @@ def create_un(client, username, password)
     client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), '#{username}', AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
 end
 
+def unique_user(client, username, password)
+    m = client.query("SELECT `username` FROM users_table")
+    m.each do |v|
+    if v.has_value?(username)
+        redirect '/signup'
+    end
+    end
+end
+

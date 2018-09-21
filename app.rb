@@ -10,7 +10,6 @@ client = Mysql2::Client.new(:host => ENV['endpoint'], :username => ENV['username
 
 get '/' do
   error = session[:error] || ""
-  
   erb :login
 end
 
@@ -21,8 +20,6 @@ username = client.escape(username)
 password = client.escape(password)
 
 login_funk(client, username, password)
-
-
 
 redirect '/contacts'
 
@@ -40,12 +37,7 @@ username = client.escape(username)
 password = client.escape(password)
 
 
-m = client.query("SELECT `username` FROM users_table")
-m.each do |v|
-  if v.has_value?(username)
-    redirect '/signup'
-  end
-end
+unique_user(client, username, password)
 
 create_un(client, username, password)
 redirect '/'
