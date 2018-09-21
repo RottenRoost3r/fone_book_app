@@ -20,18 +20,9 @@ password = params[:password]
 username = client.escape(username)
 password = client.escape(password)
 
-chk_arr = []
+login_funk(client, username, password)
 
-x = client.query("SELECT `id` FROM `users_table` WHERE username = '#{username}' AND password = AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512)))")
-x.each do |c|
-  chk_arr << c['id']
-end
 
-unless chk_arr.length > 0
-  redirect '/'
-end
-
-session[:user_id] = chk_arr.join('')
 
 redirect '/contacts'
 
