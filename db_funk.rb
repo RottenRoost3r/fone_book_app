@@ -33,3 +33,7 @@ def unique_user(client, username, password)
     end
 end
 
+def create_con(client, firstname, lastname, street, city, state, zip, phonenumber, id)
+    client.query("INSERT INTO `contacts_table`(firstname, lastname, street, city, state, zip, phonenumber, owner) VALUES('#{First_Name}', '#{Last_Name}', '#{Street_Address}', '#{City}', '#{State}', '#{Zip}', '#{Phone_Number}', '#{id}')")
+end
+

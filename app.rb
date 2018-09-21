@@ -59,7 +59,6 @@ get '/contacts' do
     arr << Sanitize.clean(y['phonenumber'])
     contacts << arr
   end
-  p contacts
 erb :contacts, locals:{contacts: contacts || [], other_arr: other_arr || []}
 end
 
@@ -89,7 +88,7 @@ post '/create_contact' do
   Zip = client.escape(Zip)
   id = session[:user_id]
   id = client.escape(id)
-  client.query("INSERT INTO `contacts_table`(firstname, lastname, street, city, state, zip, phonenumber, owner) VALUES('#{First_Name}', '#{Last_Name}', '#{Street_Address}', '#{City}', '#{State}', '#{Zip}', '#{Phone_Number}', '#{id}')")
+  create_con(client, First_Name, Last_Name, Street_Address, City, State, Zip, Phone_Number, id)
  
   redirect '/contacts'
 end
