@@ -56,8 +56,7 @@ m.each do |v|
   end
 end
 
-client.query("INSERT INTO `users_table`(id, username, password) VALUES(UUID(), '#{username}', AES_ENCRYPT('#{password}', UNHEX(SHA2('#{ENV['salt']}',512))))")
-
+create_un(client, username, password)
 redirect '/'
 end
 
