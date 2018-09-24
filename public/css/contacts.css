@@ -44,4 +44,27 @@ tr:nth-child(even) {
     background-color: green;
 }
 
+input#searchinput{
+    height: 40px;
+    width: 324px;
+    border-style: outset;
+    background-color: black;
+    color: orangered;
+    font-family: fantasy;
+    font-size: 29;
+    margin-left: 1vw;
+    text-align: center;
+}
+button#delbutton{
+    height: 40px;
+    width: 324px;
+    border-style: outset;
+    background-color: black;
+    color: orangered;
+    font-family: fantasy;
+    font-size: 29;
+    margin-left: 1vw;
+    text-align: center;
+}
+
 

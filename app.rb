@@ -30,12 +30,10 @@ get '/signup' do
 end
 
 post '/signup' do
-  
 username = params[:username]
 password = params[:password]
 username = client.escape(username)
 password = client.escape(password)
-
 
 unique_user(client, username, password)
 
@@ -71,7 +69,6 @@ get '/create_contact' do
 end
 
 post '/create_contact' do
-
   First_Name = params[:firstname]
   First_Name = client.escape(First_Name)
   Last_Name = params[:lastname]
@@ -95,10 +92,15 @@ end
 
 post '/delete' do
   other_arr = params[:other_arr] || []
+  puts "#{other_arr} other"
+
   temp_arr = params[:killbutton] || []
-  temp_arr.each_with_index do |v,i|
-    killthis = v-1
-    client.query("DELETE FROM `contacts_table` WHERE `id`='#{other_arr[killthis].to_i}' ")
+  puts"#{temp_arr} temp"
+  other_arr.each_with_index do |v,i|
+    killthis = v.to_i-1
+    puts "#{other_arr} other 2"
+    puts "kill #{killthis}"
+    client.query("DELETE FROM `contacts_table` WHERE `id`='#{killthis}' ")
   end
   redirect'/contacts'
 end

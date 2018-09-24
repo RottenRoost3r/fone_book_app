@@ -9,6 +9,7 @@
 <a href='/create_contact'><button>Create a new contact</button></a>
 
 <form method="post" action="/contacts" id="myform">
+
 <input type="text" id="searchinput" onkeyup="searchfunk()" placeholder="Search for names.." title="Type in a name">
     <table style="width:100%" id="table">
     <div class="table" id="contacts_table">
@@ -35,9 +36,11 @@
          
     <%end%>
     </table>
-    <button type="button" id="delbutton" name="killbutton" value="[]" onclick="deleteRows();">Delete Selected</button>
+    
 </form>
-
+<form method="post" action="/delete">
+ <button type="button" id="delbutton" name="killbutton" value="[]" onclick="deleteRows();">Delete Selected</button>
+ </form>
 <script>
 function deleteRows(){
     var myform = document.getElementById('myform');
@@ -46,12 +49,13 @@ function deleteRows(){
 	isTable = document.getElementById('table');
 	nBoxes = document.getElementsByName('delbox');
     for (var i=nBoxes.length-1; i>=0; i--){
-        {if (nBoxes[i].checked == true){temp.push(i+1); dubutton.value = temp;}}
-        {if (nBoxes[i].checked == true){isTable.deleteRow(i+1);}}
+        {if (nBoxes[i].checked == true)
+            {temp.push(i+1); dubutton.value = temp;}}
+        {if (nBoxes[i].checked == true)
+            {isTable.deleteRow(i+1);}}
      console.log(`this is my thing ${dubutton.value}`)
+     console.log(`this is my thing 2 ${temp}`)
     }
-    myform.action = "/delete";
-    myform.submit();
 }	
 </script>
 
