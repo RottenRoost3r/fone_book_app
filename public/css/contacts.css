@@ -21,17 +21,10 @@ form{
     text-align: center;
 }
 
-
 button{
-    height: 40px;
-    width: 291px;
-    border-style: outset;
-    background-color: black;
-    color: orangered;
-    font-family: fantasy;
-    font-size: 29;
-    margin-left: 39vw;
+
 }
+
 
 td, th {
     border: 1px solid green;
@@ -55,16 +48,26 @@ input#searchinput{
     margin-left: 1vw;
     text-align: center;
 }
-button#delbutton{
-    height: 40px;
-    width: 324px;
-    border-style: outset;
+
+div.new_butn{
+    margin-left: 40vw;
+}
+
+button{
+    height: 5vw;
+    width: 18vw;
     background-color: black;
     color: orangered;
-    font-family: fantasy;
-    font-size: 29;
-    margin-left: 1vw;
-    text-align: center;
+    font-size: 26px;
+    font-family: fantasy
+}
+button#up_button{
+    height: 5vw;
+    width: 7vw;
+    background-color: black;
+    color: orangered;
+    font-size: 26px;
+    font-family: fantasy
 }
 
 

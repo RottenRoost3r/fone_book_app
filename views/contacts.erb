@@ -3,18 +3,16 @@
 <script src="/js/fone_book.js"></script>
 <h1>CONTACTS</h1>
 </head>
-
 <body>
-
+<div class="new_butn">
 <a href='/create_contact'><button>Create a new contact</button></a>
-
+</div>
 <form method="post" action="/contacts" id="myform">
 
 <input type="text" id="searchinput" onkeyup="searchfunk()" placeholder="Search for names.." title="Type in a name">
     <table style="width:100%" id="table">
     <div class="table" id="contacts_table">
     <tr>
-        
         <th>FIRST NAME</th>
         <th>LAST NAME</th>
         <th>STREET</th>
@@ -22,41 +20,18 @@
         <th>STATE</th>
         <th>ZIP</th>
         <th>PHONE NUMBER</th>
-        <th>DELETE?</th>
     </tr>
     </div>
     <%contacts.each_with_index do |v, i|%>
         <tr>
-        <input type="hidden" name="other_arr[]" id="other_arr" value="<%=other_arr[i]%>">
         <%v.each do |info|%>
             <td><%=info%></td>
         <%end%>
-        <td><input type="checkbox" id="delbox" name="delbox"></td>
+        <td><div class='update'> <a href='/update'><button type="button" id="up_button" name="up_button">Update</button></a></div></td>
         </tr>
-         
+        
     <%end%>
     </table>
     
 </form>
-<form method="post" action="/delete">
- <button type="button" id="delbutton" name="killbutton" value="[]" onclick="deleteRows();">Delete Selected</button>
- </form>
-<script>
-function deleteRows(){
-    var myform = document.getElementById('myform');
-    var dubutton = document.getElementById('delbutton');
-    var temp = []
-	isTable = document.getElementById('table');
-	nBoxes = document.getElementsByName('delbox');
-    for (var i=nBoxes.length-1; i>=0; i--){
-        {if (nBoxes[i].checked == true)
-            {temp.push(i+1); dubutton.value = temp;}}
-        {if (nBoxes[i].checked == true)
-            {isTable.deleteRow(i+1);}}
-     console.log(`this is my thing ${dubutton.value}`)
-     console.log(`this is my thing 2 ${temp}`)
-    }
-}	
-</script>
-
 </body>

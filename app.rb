@@ -90,17 +90,28 @@ post '/create_contact' do
   redirect '/contacts'
 end
 
-post '/delete' do
-  other_arr = params[:other_arr] || []
-  puts "#{other_arr} other"
+get '/update' do
+  erb :update
+end
 
-  temp_arr = params[:killbutton] || []
-  puts"#{temp_arr} temp"
-  other_arr.each_with_index do |v,i|
-    killthis = v.to_i-1
-    puts "#{other_arr} other 2"
-    puts "kill #{killthis}"
-    client.query("DELETE FROM `contacts_table` WHERE `id`='#{killthis}' ")
-  end
+post '/update' do
+  First_Name = params[:firstname]
+  First_Name = client.escape(First_Name)
+  Last_Name = params[:lastname]
+  Last_Name = client.escape(Last_Name)
+  Street_Address = params[:street]
+  Street_Address = client.escape(Street_Address)
+  City = params[:city]
+  City = client.escape(City)
+  State = params[:state]
+  State = client.escape(State)
+  Phone_Number = params[:phonenumber]
+  Phone_Number = client.escape(Phone_Number)
+  Zip = params[:zip]
+  Zip = client.escape(Zip)
+  id = session[:user_id]
+  id = client.escape(id)
+  create_con(client, First_Name, Last_Name, Street_Address, City, State, Zip, Phone_Number, id)
+  
   redirect'/contacts'
 end
