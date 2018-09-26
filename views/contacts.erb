@@ -27,39 +27,18 @@
         <%v.each do |info|%>
             <td><%=info%></td>
         <%end%>
-        <td><button type="button" id="myBtn" onclick="modalstuff()">Open Modal</button></td>
-        <td><div class='update'> <a href='/update'><button type="button" id="up_button" data-session="<%= session[:user_id]%>" onclick="save_id()" name="up_button">Update</button></a></div></td>
+        <td><button type="button" class="btn_class" name="myBtn" id="myBtn" data-session="<%= session[:user_id]%>"  onclick="modalstuff()">Edit</button></td>
         </tr>
         
     <%end%>
 </div>
 </form>
 
-<script>
-function modalstuff(){ //You didnt wrap function in {}
-    var modal = document.getElementById('myModal');
-    var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-}
-</script>
-
  </table>
-  <div id="myModal" class="modal"> <!-- The modal class doesnt exist -->
-   <div class="modal-content"><!--Same, define these in css file-->
-    <span class="close">&times;</span>
+  <div id="myModal" class="modal"> 
+   <div class="modal-content">
     
-    <input type="text" placeholder="First Name" name="firstname" required><br>
+    <input type="text" placeholder="First Name" value="<%="#{first_name}"%>" name="firstname" required><br>
     <input type="text" placeholder="Last Name" name="lastname" required><br>
     <input type="text" placeholder="Street" name="street" required><br>
     <input type="text" placeholder="City" name="city" required><br>
@@ -67,6 +46,8 @@ function modalstuff(){ //You didnt wrap function in {}
     <input type="text" placeholder="Zip" name="zip" required><br>
     <input type="text" placeholder="Phone Number" name="phonenumber" required><br>
 
+    <span class="close">&times;</span>
+   
     <input type='submit'>
 
 

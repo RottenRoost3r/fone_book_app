@@ -16,15 +16,26 @@ function searchfunk() {
   }
 }
 
-function deleteRows(){
-
-	isTable = document.getElementById('contacts_table');
-	nBoxes = document.getElementsByName('delbox');
-	for (i=nBoxes.length-1; i>=0; i--);
-		{if (nBoxes[i].checked == true){isTable.deleteRow(i+1);}}
-}	
-
-function delbutton(){
-  var chkboxes = document.getElementById(delbox);
-
+function modalstuff(){
+  var modal = document.getElementById('myModal');
+  var buttons = document.getElementsByName('myBtn');
+  var span = document.getElementsByClassName("close")[0];
+  
+  
+  for (var i = 0; i < buttons.length; i++) { 
+    // console.log(buttons[i]);
+    buttons[i].onclick = function() {
+      modal.style.display = "block";
+      console.log("it's clicked")
+  }
+  }
+  
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  window.onclick = function(event){
+    if (event.target == modal) {
+        modal.style.display = "none";
+        }  
+      }
 }
