@@ -111,7 +111,8 @@ post '/update' do
   Zip = client.escape(Zip)
   id = session[:user_id]
   id = client.escape(id)
-  create_con(client, First_Name, Last_Name, Street_Address, City, State, Zip, Phone_Number, id)
-  
+  special_id = params[:up_button]
+
+  puts "#{up_button}"
   redirect'/contacts'
 end
