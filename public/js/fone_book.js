@@ -18,7 +18,7 @@ function searchfunk() {
 
 function modalstuff(contact_id){
   var modal = document.getElementById('myModal');
-  var buttons = document.getElementsByName('myBtn');
+ var buttons = document.getElementsByName('myBtn');
   var span = document.getElementsByClassName("close")[0];
   var x = contact_id.value;
   var y = document.getElementById("add_content_value");
@@ -48,8 +48,8 @@ modal.style.display = "block";
       }
 }
 
-function del(){
-var z = document.getElementById("delat");
+function deeleet(){
+var z = document.getElementById("myform");
 z.action = "/delete";
 z.submit();
 }

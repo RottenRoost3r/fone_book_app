@@ -59,10 +59,6 @@ get '/contacts' do
 erb :contacts, locals:{contacts: contacts || []}
 end
 
-post '/contacts' do
-
-end
-
 get '/create_contact' do
   erb :create_contact
 end
@@ -93,11 +89,9 @@ get '/update' do
   erb :update
 end
 
-get '/delete' do
-end
-
 post '/delete' do
   contact_id = params[:contact_id]
-  client.query("DELETE FROM `contacts_table` WHERE `id` = '#{contact_id}'")
+  client.query("DELETE FROM `contacts_table` WHERE `id` = '#{contact_id}';")
   redirect '/contacts'
 end
+
