@@ -27,17 +27,17 @@
         <%v.each do |info|%>
             <td><%=info%></td>
         <%end%>
-        <td><button type="button" class="btn_class" name="myBtn" id="myBtn" data-session="<%= session[:user_id]%>"  onclick="modalstuff()">Edit</button></td>
+        <td><button type="button" class="btn_class" name="myBtn" id="myBtn" value="<%=v[0]%>, <%=v[1]%>, <%=v[2]%>, <%=v[3]%>, <%=v[4]%>, <%=v[5]%>, <%=v[6]%>, <%=v[7]%> " data-session="<%= session[:user_id]%>"  onclick="modalstuff(this)">Edit</button></td>
         </tr>
         
     <%end%>
 </div>
-</form>
+
 
  </table>
   <div id="myModal" class="modal"> 
    <div class="modal-content">
-    
+   <div class="modal-content" id="add_content_value">
     <input type="text" placeholder="First Name"  name="firstname" required><br>
     <input type="text" placeholder="Last Name" name="lastname" required><br>
     <input type="text" placeholder="Street" name="street" required><br>
@@ -45,13 +45,10 @@
     <input type="text" placeholder="State" name="state" required><br>
     <input type="text" placeholder="Zip" name="zip" required><br>
     <input type="text" placeholder="Phone Number" name="phonenumber" required><br>
-
+   </div>
+   </div>
     <span class="close">&times;</span>
    
     <input type='submit'>
-
-
-
-  </div>
- 
+ </form>
 </body>

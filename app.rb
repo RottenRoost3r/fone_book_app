@@ -47,7 +47,7 @@ get '/contacts' do
   contact_id = []
   n.each do |y|
     arr = []
-    contact_id << z["id"]
+    contact_id << y["id"]
     arr << Sanitize.clean(y['firstname'])
     arr << Sanitize.clean(y['lastname'])
     arr << Sanitize.clean(y['street'])

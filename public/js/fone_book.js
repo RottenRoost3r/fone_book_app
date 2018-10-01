@@ -16,17 +16,25 @@ function searchfunk() {
   }
 }
 
-function modalstuff(){
+function modalstuff(contact_id){
   var modal = document.getElementById('myModal');
   var buttons = document.getElementsByName('myBtn');
   var span = document.getElementsByClassName("close")[0];
+  var x = contact_id.value;
+  var y = document.getElementById("add_content_value")
+  x = x.split(',');
   
-  
-  for (var i = 0; i < buttons.length; i++) { 
-    // console.log(buttons[i]);
+  for (var i = 0; i < y.children.length; i++){
+    if (y.children[i].tagName == "INPUT"){
+        if (y.children[i].type == "text"){
+            y.children[i].value = x[i];
+        }
+    }
+}
+
+  for (var i = 0; i < buttons.length; i++) {
     buttons[i].onclick = function() {
       modal.style.display = "block";
-      console.log("it's clicked")
   }
   }
   
