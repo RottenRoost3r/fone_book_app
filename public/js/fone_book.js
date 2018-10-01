@@ -55,5 +55,7 @@ z.submit();
 }
 
 function edit(){
-
+var m = document.getElementById("myform");
+m.action = "/update";
+m.submit();
 }

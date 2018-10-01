@@ -85,9 +85,28 @@ post '/create_contact' do
   redirect '/contacts'
 end
 
-get '/update' do
-  erb :update
+post '/update' do
+  First_Name = params[:firstname]
+  First_Name = client.escape(First_Name)
+  Last_Name = params[:lastname]
+  Last_Name = client.escape(Last_Name)
+  Street_Address = params[:street]
+  Street_Address = client.escape(Street_Address)
+  City = params[:city]
+  City = client.escape(City)
+  State = params[:state]
+  State = client.escape(State)
+  Phone_Number = params[:phonenumber]
+  Phone_Number = client.escape(Phone_Number)
+  Zip = params[:zip]
+  Zip = client.escape(Zip)
+  id = session[:user_id]
+  id = client.escape(id)
+  contact_id = params[:contact_id]
+  client.query("UPDATE `contacts_table` SET firstname ='#{First_Name}' WHERE `id` = '#{contact_id}';")
+  redirect '/contacts'
 end
+
 
 post '/delete' do
   contact_id = params[:contact_id]
