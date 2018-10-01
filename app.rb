@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'mysql2'
 require 'sanitize'
-
+require_relative 'local_ENV.rb'
 require_relative 'db_funk.rb'
 enable :sessions
 
