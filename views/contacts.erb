@@ -24,8 +24,10 @@
     </div>
     <%contacts.each_with_index do |v, i|%>
         <tr>
-        <%v.each do |info|%>
+        <%v.each_with_index do |info, ii|%>
+            <%if ii != 7%>
             <td><%=info%></td>
+            <%end%>
         <%end%>
         <td><button type="button" class="btn_class" name="myBtn" id="myBtn" value="<%=v[0]%>, <%=v[1]%>, <%=v[2]%>, <%=v[3]%>, <%=v[4]%>, <%=v[5]%>, <%=v[6]%>, <%=v[7]%>" data-session="<%= session[:user_id]%>"  onclick="modalstuff(this)">Edit</button></td>
         </tr>
