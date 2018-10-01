@@ -44,10 +44,8 @@ end
 get '/contacts' do
   contacts = []
   n = client.query("SELECT * FROM `contacts_table` WHERE owner = '#{session[:user_id]}'")
-  contact_id = []
   n.each do |y|
     arr = []
-    contact_id << y["id"]
     arr << Sanitize.clean(y['firstname'])
     arr << Sanitize.clean(y['lastname'])
     arr << Sanitize.clean(y['street'])
@@ -55,9 +53,10 @@ get '/contacts' do
     arr << Sanitize.clean(y['state'])
     arr << Sanitize.clean(y['zip'])
     arr << Sanitize.clean(y['phonenumber'])
+    arr << (y['id'])
     contacts << arr
   end
-erb :contacts, locals:{contacts: contacts || [],contact_id: contact_id}
+erb :contacts, locals:{contacts: contacts || []}
 end
 
 post '/contacts' do

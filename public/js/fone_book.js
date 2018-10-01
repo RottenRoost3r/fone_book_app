@@ -23,7 +23,7 @@ function modalstuff(contact_id){
   var x = contact_id.value;
   var y = document.getElementById("add_content_value");
   x = x.split(',');
-  
+  console.log(x);
   for (var i = 0; i < y.children.length; i++){
     if (y.children[i].tagName == "INPUT"){
         if (y.children[i].type == "text"){
@@ -43,4 +43,8 @@ modal.style.display = "block";
         modal.style.display = "none";
         }  
       }
+}
+
+function del(){
+
 }
