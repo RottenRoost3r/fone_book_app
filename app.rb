@@ -5,7 +5,7 @@ require_relative 'local_ENV.rb'
 require_relative 'db_funk.rb'
 enable :sessions
 
-load 'local_ENV.rb' if File.exist?('local_ENV.rb')
+# load 'local_ENV.rb' if File.exist?('local_ENV.rb')
 client = Mysql2::Client.new(:host => ENV['endpoint'], :username => ENV['username'], :password => ENV['password'], :port => ENV['port'], :database => ENV['database'], :socket =>'/tmp/mysql.sock')
 
 get '/' do
