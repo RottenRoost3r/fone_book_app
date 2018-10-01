@@ -103,7 +103,7 @@ post '/update' do
   id = session[:user_id]
   id = client.escape(id)
   contact_id = params[:contact_id]
-  client.query("UPDATE `contacts_table` SET firstname ='#{First_Name}' WHERE `id` = '#{contact_id}';")
+  client.query("UPDATE `contacts_table` SET firstname ='#{First_Name}', lastname = '#{Last_Name}',street = '#{Street_Address}',city = '#{City}', state ='#{State}', zip ='#{Zip}', phonenumber = '#{Phone_Number}' WHERE `id` = '#{contact_id}';")
   redirect '/contacts'
 end
 
