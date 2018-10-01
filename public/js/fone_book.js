@@ -28,7 +28,10 @@ function modalstuff(contact_id){
     if (y.children[i].tagName == "INPUT"){
         if (y.children[i].type == "text"){
             y.children[i].value = x[i];
+        }else if (y.children[i].type == "hidden"){
+          y.children[i].value = x[i];
         }
+        
     }
 }
 
@@ -46,5 +49,11 @@ modal.style.display = "block";
 }
 
 function del(){
+var z = document.getElementById("delat");
+z.action = "/delete";
+z.submit();
+}
+
+function edit(){
 
 }
