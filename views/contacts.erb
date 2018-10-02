@@ -1,11 +1,10 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/contacts.css">
-
-<h1>CONTACTS</h1>
 </head>
 <body>
 <div class="new_butn">
 <a href='/create_contact'><button>Create a new contact</button></a>
+<a href='/'>Sign Out</a>
 </div>
 <form method="post" action="/contacts" id="myform">
 
@@ -48,12 +47,13 @@
     <input type="text" placeholder="Zip" name="zip" required>
     <input type="text" placeholder="Phone Number" name="phonenumber" required>
     <input type="hidden" name="contact_id">
-     <input type="submit" value="delete" onclick="deeleet()" id="delbutt">
-     <input type="submit" value="update" onclick="edit()" id="update">
+    <input type="submit" value="UPDATE" onclick="edit()" id="update">
+     <input type="submit" value="DELETE" onclick="deeleet()" id="delbutt">
    </div>
    </div>
     <span class="close">&times;</span>
-    <input type='submit'>
+    <a href='/'><button>Sign Out</button></a>
  </form>
+ <a href='/'>Sign Out</a>
 </body>
 <script src="/js/fone_book.js"></script>

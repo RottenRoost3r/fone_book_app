@@ -13,7 +13,7 @@ body{
 }
 
 h1{
-    color: midnightblue;
+    
     text-align: center;
 }
 
@@ -27,14 +27,22 @@ button{
 
 
 td, th {
-    border: 1px solid green;
+    border: 2px solid black;
     text-align: left;
     padding: 8px;
+    font-size: 20px;
+    font-family: fantasy;
 }
 
 
 tr:nth-child(even) {
-    background-color: green;
+    background-color: red;
+    
+}
+
+tr:nth-child(odd) {
+    background-color: orange;
+    color: midnightblue;
 }
 
 input#searchinput{
@@ -84,11 +92,11 @@ button#mybtn{
 }
 
 .modal-content{
-    background-color: #e20c0c;
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border-style: inset;
+    border-color: midnightblue;
+    background-color: white;
+    margin: 3% 15% 15% 32%;
+    width: 37%;
     text-align: center;
 }
 
@@ -105,3 +113,21 @@ button#mybtn{
     text-decoration: none;
     cursor: pointer;
 }
+
+input{
+    height: 40px;
+    width: 180px;
+    border-style: outset;
+    background-color: black;
+    color: rgb(228, 74, 19);
+    font-family: sans-serif;
+    font-size: 17px;
+}
+
+a {
+    background-color: red;
+    color: white;
+    padding: -1em 1.5em;
+    text-decoration: none;
+    font-size: 15px;
+  }

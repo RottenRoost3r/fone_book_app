@@ -2,11 +2,10 @@
 
 
 body{
-    background-color: goldenrod;
+    background-color: lawngreen;
 }
 
 h1{
-    color: midnightblue;
     text-align: center;
 }
 
@@ -20,7 +19,7 @@ input{
     width: 265px;
     border-style: outset;
     background-color: black;
-    color: orangered;
+    color: red;
     font-family: fantasy;
     font-size: 29;
 }
