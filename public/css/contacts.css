@@ -78,6 +78,15 @@ button#mybtn{
     font-family: fantasy
 }
 
+input#update,
+input#delbutt{
+    background-color: red;
+    color: black;
+    margin-top: 5px;
+    font-family: fantasy;
+    font-size: 32px;
+}
+
 .modal{
     display: none;
     position: fixed;
