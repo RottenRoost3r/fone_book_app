@@ -25,16 +25,17 @@ input{
 }
 
 a {
-    background-color: red;
+    background-color: black;
     color: white;
-    padding: 0em 5.5em;
+    border-style: outset;
+    padding: 1em 6.2em;
     text-decoration: none;
     text-transform: uppercase;
   }
 
-:hover{
-    color:white;
-    background-color: black;
+a:hover{
+    color:black;
+    background-color: white;
 }
 
   
