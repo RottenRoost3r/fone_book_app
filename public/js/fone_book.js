@@ -35,6 +35,16 @@ function modalstuff(contact_id){
     }
 }
 
+function format(phonenumber) {
+  var p_val = phonenumber.value.replace(/\D+/g, "");
+  var temp = p_val.slice(0,3);
+  if (temp != "304") {
+      phonenumber.value = "1("+temp+")"+p_val.slice(3,6)+"-"+p_val.slice(6);
+  }else{
+      phonenumber.value = p_val.slice(0,3)+"-"+p_val.slice(3,6)+"-"+p_val.slice(6);
+  }
+  return phonenumber.value;
+}
 
 modal.style.display = "block";
   
