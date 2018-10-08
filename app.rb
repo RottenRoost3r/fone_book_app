@@ -9,17 +9,16 @@ client = Mysql2::Client.new(:host => ENV['endpoint'], :username => ENV['username
 
 get '/' do
   error = session[:error] || ""
-  erb :login
+  erb :login, locals: {error: error}
 end
 
 post '/login' do
 username = params[:username]
 password = params[:password]
+error = session[:error] || ""
 username = client.escape(username)
 password = client.escape(password)
-
 login_funk(client, username, password)
-
 redirect '/contacts'
 
 end
