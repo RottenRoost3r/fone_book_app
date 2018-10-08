@@ -19,6 +19,8 @@ def login_funk(client, username, password)
     unless chk_arr.length > 0
         session[:error] = "Invalid Username or Password"
         redirect '/'
+    else chk_arr.length <= 0
+        session[:error] = ""
     end
 end
 
