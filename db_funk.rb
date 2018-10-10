@@ -32,7 +32,10 @@ def unique_user(client, username, password)
     m = client.query("SELECT `username` FROM users_table")
     m.each do |v|
     if v.has_value?(username)
+        session[:error] = "Username Already Taken"
         redirect '/signup'
+    else
+        session[:error] = ""
     end
     end
 end

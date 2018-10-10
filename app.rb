@@ -24,12 +24,14 @@ redirect '/contacts'
 end
 
 get '/signup' do
-  erb :signup
+  error = session[:error] || ""
+  erb :signup, locals: {error: error}
 end
 
 post '/signup' do
 username = params[:username]
 password = params[:password]
+error = session[:error] || ""
 username = client.escape(username)
 password = client.escape(password)
 
